@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<script th:inline="javascript">
+         setTimeout(function(){
+            window.location.href = "/bugs";
+         }, 5000);
+	</script>
+	<div class="container">
+		<h3>Bug has been added</h3>
+		<p>
+			You'll be redirected automatically in 5 seconds.<br />
+			Or click to go to bugpage <a th:href="@{/bugs}">here</a>
+		</p>
+	</div>
+</body>
+</html>

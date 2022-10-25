@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<nav th:replace="/fragments/header :: navbar"></nav>
+	<div class="container">
+		<h3>Welcome to the bugtracker project</h3>
+		<p>
+			If you want to view all bugs, then click <a th:href="@{/bugs}">here</a>
+		</p>
+	</div>
+</body>
+</html>

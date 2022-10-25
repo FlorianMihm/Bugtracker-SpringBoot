@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<nav th:replace="/fragments/header :: navbar"></nav>
+	<div class="container">
+		<div class="card">
+			<h2 class="card-header bg-primary">Bug Details</h2>
+			<div class=card-body>
+				<p>
+					<span style="text-decoration: underline; font-weight: bold;">Name:</span>
+					<span th:text="${bug.name}"></span>
+				</p>
+				<p>
+					<span style="text-decoration: underline; font-weight: bold;">Priority:</span>
+					<span th:text="${bug.priority}"></span>
+				</p>
+				<p>
+					<span style="text-decoration: underline; font-weight: bold;">Developer:</span>
+					<span th:text="${developer.getDeveloperInfo()}"></span>
+				</p>
+			</div>
+			<div class="card-footer">
+				<a class="btn btn-secondary" th:href="@{/bugs}">Back to bugpage</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

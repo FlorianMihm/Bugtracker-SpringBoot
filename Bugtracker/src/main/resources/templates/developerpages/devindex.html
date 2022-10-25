@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<nav th:replace="/fragments/header :: navbar"></nav>
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="developer : ${developerList}">
+					<td th:text="${developer.id}"></td>
+					<td th:text="${developer.getFullName}"></td>
+					<td>
+						<a class="btn btn-sm btn-success"
+							th:href="@{/developer/details/} + ${developer.id}" name="devid">
+							<i class="fa fa-info"></i>
+							Dev details
+						</a>
+					</td>
+			</tbody>
+		</table>
+		<a class="btn btn-secondary" th:href="@{/}">Back to startpage</a>
+		<a class="btn btn-primary float-end disabled" th:href="@{/bugs/add}">Add developer</a>
+	</div>
+</body>
+</html>

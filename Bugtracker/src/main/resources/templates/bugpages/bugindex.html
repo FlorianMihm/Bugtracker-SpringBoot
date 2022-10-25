@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<nav th:replace="/fragments/header :: navbar"></nav>
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Priority</th>
+					<th>Developer</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bug : ${bugList}">
+					<td th:text="${bug.id}"></td>
+					<td th:text="${bug.name}"></td>
+					<td th:text="${bug.description}"></td>
+					<td th:switch="${bug.priority.toString}">
+						<i th:case="COSMETIC" th:title="${bug.priority}" class="fa fa-bug text-success"></i>
+						<i th:case="MINOR" th:title="${bug.priority}" class="fa fa-bug text-success"></i>
+						<i th:case="MODERATE" th:title="${bug.priority}" class="fa fa-bug text-warning"></i>
+						<i th:case="MAJOR" th:title="${bug.priority}" class="fa fa-bug text-danger"></i>
+						<i th:case="CRITICAL" th:title="${bug.priority}" class="fa fa-bug text-danger"></i>
+					</td>
+					<td>
+						<a class="btn btn-sm btn-success"
+							th:href="@{/developer/details/} + ${bug.developerId}">
+							<i class="fa fa-info"></i>
+							Dev details
+						</a>
+					</td>
+					<td>
+						<a class="btn btn-sm btn-primary"
+							th:href="@{/bugs/details/} + ${bug.id}">
+							<i class="fa fa-info"></i>
+							Bug details
+						</a>
+					</td>
+			</tbody>
+		</table>
+		<div class="float-start">
+			<a class="btn btn-secondary float-start" th:href="@{/}">Back to startpage</a>
+		</div>
+			<a class="btn btn-secondary" th:each="page : ${#numbers.sequence(1, totalPages)}" th:class="btn" th:classappend="${page} != ${currentPage} ? btn-secondary : btn-primary" th:href="@{?page=}+${page}" th:text=${page}></a>
+		<div class="float-end">
+			<a class="btn btn-primary float-end" th:href="@{/bugs/add}">Add bug</a></div>
+		</div>
+</body>
+</html>

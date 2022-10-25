@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="/fragments/header :: header">
+</head>
+<body>
+	<nav th:replace="/fragments/header :: navbar"></nav>
+	<div class="container">
+		<div class="card">
+			<h2 class="card-header bg-primary">Developer Details</h2>
+			<div class=card-body>
+				<p>
+					<span style="text-decoration: underline; font-weight: bold;">Fullname:</span>
+					<span th:text="${developer.getFullName()}"></span>
+				</p>
+				<p>
+					<span style="text-decoration: underline; font-weight: bold;">Total bugs:</span>
+					<span th:text="${totalbugs}"></span>
+				</p>
+			</div>
+			<div class="card-footer">
+				<a class="btn btn-secondary" th:href="@{/}">Back to startpage</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
