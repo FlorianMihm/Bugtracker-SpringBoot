@@ -45,12 +45,15 @@
 					</td>
 			</tbody>
 		</table>
-		<div class="float-start">
-			<a class="btn btn-secondary float-start" th:href="@{/}">Back to startpage</a>
+		<div class="d-flex align-items-baseline justify-content-between">
+			<a class="btn btn-secondary" th:href="@{/}">Back to startpage</a>
+			<ul class="pagination">
+				<li class="page-item"><a th:class="page-link" th:href="@{?page=1}">First</a></li>
+				<li th:each="page : ${#numbers.sequence(1, totalPages)}" th:class="page-item"><a th:class="page-link" th:classappend="${page} == ${currentPage} ? active" th:href="@{?page=}+${page}" th:text=${page}></a></li>
+				<li class="page-item"><a th:class="page-link" th:href="@{?page=}+${totalPages}">Last</a></li>
+			</ul>
+			<a class="btn btn-primary" th:href="@{/bugs/add}">Add bug</a>
 		</div>
-			<a class="btn btn-secondary" th:each="page : ${#numbers.sequence(1, totalPages)}" th:class="btn" th:classappend="${page} != ${currentPage} ? btn-secondary : btn-primary" th:href="@{?page=}+${page}" th:text=${page}></a>
-		<div class="float-end">
-			<a class="btn btn-primary float-end" th:href="@{/bugs/add}">Add bug</a></div>
-		</div>
+	</div>
 </body>
 </html>

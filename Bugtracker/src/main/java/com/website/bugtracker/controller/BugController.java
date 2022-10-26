@@ -44,7 +44,8 @@ public class BugController {
 		model.addAttribute("title", "Bug overviews");
 		model.addAttribute("bugList", bugservice.getAllBugs().stream().skip(showEntries*(page-1)).limit(showEntries).collect(Collectors.toList()));
 		model.addAttribute("currentPage", page);
-		model.addAttribute("totalPages", (int) Math.abs(bugservice.getAllBugs().stream().count() / 5)+1);
+		model.addAttribute("totalPages", (int) Math.ceil((double)bugservice.getAllBugs().stream().count() / 5));
+		System.out.println(Math.ceil((double)bugservice.getAllBugs().stream().count() / 5));
 		return path + "bugindex";
 	}
 	
